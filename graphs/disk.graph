@@ -1,0 +1,7 @@
+title "Disk Usage (#{info[:mount]})"
+
+field :disk_used, :data => "systems.#{info[:hostname]}.df.df.#{info[:mount]}.used",
+                   :alias => 'Used'
+
+field :disk_free, :data => "systems.#{info[:hostname]}.df.df.#{info[:mount]}.free",
+                   :alias => 'Free'

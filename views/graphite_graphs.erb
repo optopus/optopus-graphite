@@ -1,0 +1,30 @@
+<script>
+  $('#graph-tabs a').click(function(e) {
+    e.preventDefault();
+    $(this).tab('show')
+  });
+
+  setTimeout(function() { $('#graph-tabs a').first().tab('show') }, 1);
+</script>
+<div class="page-header">
+  <h3>Graphs</h3>
+  <small>Graphs pulled from graphite</small>
+</div>
+
+<ul id="graph-tabs" class="nav nav-tabs">
+  <% graphite_graphs.keys.each do |type| %>
+    <li><a href="" data-toggle="tab" data-target="#<%= html_id("graphs-#{type}") %>"><%= type %></a></li>
+  <% end %>
+</ul>
+
+<div class="tab-content">
+  <% graphite_graphs.each do |type, graphs| %>
+    <div class="tab-pane" id="<%= html_id("graphs-#{type}") %>">
+      <ul class="unstyled">
+        <% graphs.each do |graph| %>
+          <li><img src="<%= graphite_endpoint %>/render/?<%= graph.url %>"></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

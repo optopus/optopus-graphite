@@ -1,0 +1,7 @@
+title "#{info[:interface]} bandwidth (bits per second)"
+
+field :network_bps_rx, :data => "scale(systems.#{info[:hostname]}.interface.if_octets.#{info[:interface]}.rx, 8)",
+                       :alias => 'RX'
+
+field :network_bps_tx, :data => "scale(systems.#{info[:hostname]}.interface.if_octets.#{info[:interface]}.tx, 8)",
+                       :alias => 'TX'

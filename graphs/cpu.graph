@@ -1,0 +1,25 @@
+title "CPU Usage"
+
+field :cpu_idle, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.idle.value)",
+                 :alias => 'Idle'
+
+field :cpu_interrupt, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.interrupt.value)",
+                      :alias => 'Interrupt'
+
+field :cpu_nice, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.nice.value)",
+                 :alias => 'Nice'
+
+field :cpu_softirq, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.softirq.value)",
+                    :alias => 'Softirq'
+
+field :cpu_steal, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.steal.value)",
+                  :alias => 'Steal'
+
+field :cpu_system, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.system.value)",
+                   :alias => 'System'
+
+field :cpu_user, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.user.value)",
+                 :alias => 'User'
+
+field :cpu_wait, :data => "sumSeries(systems.#{info[:hostname]}.cpu.*.cpu.wait.value)",
+                 :alias => 'Wait'

@@ -1,0 +1,9 @@
+title 'em1 Bandwidth (bits per second)'
+
+field :network_bps_rx, :data => 'scale(systems.ops-graphite01_ma01_shuttercorp_net.interface.if_octets.em1.rx, 8)',
+                       :color => "red",
+                       :alias => "RX"
+
+field :network_bps_tx, :data => 'scale(systems.ops-graphite01_ma01_shuttercorp_net.interface.if_octets.em1.tx, 8)',
+                       :color => "blue",
+                       :alias => "RX"

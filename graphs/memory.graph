@@ -1,0 +1,13 @@
+title "Memory Usage"
+
+field :memory_used, :data => "systems.#{info[:hostname]}.memory.memory.used.value",
+                    :alias => 'Used'
+
+field :memory_free, :data => "systems.#{info[:hostname]}.memory.memory.free.value",
+                    :alias => 'Free'
+
+field :memory_cached, :data => "systems.#{info[:hostname]}.memory.memory.cached.value",
+                      :alias => 'Cached'
+
+field :memory_buffered, :data => "systems.#{info[:hostname]}.memory.memory.buffered.value",
+                        :alias => 'Buffered'
