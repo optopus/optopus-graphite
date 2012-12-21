@@ -2,7 +2,7 @@
   function refresh_graphs(from) {
     $.each($('#graphs').find('img'), function() {
       if (from) {
-        src = $(this).attr('src').replace(/&from=([\d-\w]+)/)+'&from='+from+'&'+new Date().getTime();
+        src = $(this).attr('src').replace(/&from=([\d-\w]+)/,'')+'&from='+from+'&'+new Date().getTime();
         $(this).attr('src', src);
       } else {
         $(this).attr('src', $(this).attr('src')+'&'+new Date().getTime());
