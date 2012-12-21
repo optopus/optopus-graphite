@@ -7,6 +7,10 @@
       } else {
         $(this).attr('src', $(this).attr('src')+'&'+new Date().getTime());
       }
+      $(this).parents('.graph-image').find('span').show();
+      $(this).load(function() {
+        $(this).parents('.graph-image').find('span').hide();
+      });
     });
   }
 
@@ -17,6 +21,26 @@
 
   setTimeout(function() { $('#graph-tabs a').first().tab('show') }, 1);
 </script>
+
+<style>
+  .graph-refreshing {
+    filter: alpha(opacity=50);
+  }
+  .graph-image {
+    position: relative;
+  }
+  .graph-image span {
+    color: white;
+    font: bold 18px Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+  }
+</style>
 
 <div class="page-header">
   <h3>Graphs</h3>
@@ -41,11 +65,12 @@
 <div id="graphs" class="tab-content">
   <% graphite_graphs.each do |type, graphs| %>
     <div class="tab-pane" id="<%= html_id("graphs-#{type}") %>">
-      <ul class="unstyled">
-        <% graphs.each do |graph| %>
-          <li><img src="<%= graphite_endpoint %>/render/?<%= graph.url %>"></li>
-        <% end %>
-      </ul>
+      <% graphs.each do |graph| %>
+        <div class="graph-image">
+          <img src="<%= graphite_endpoint %>/render/?<%= graph.url %>">
+          <span class="hide">Loading...</span>
+        </div>
+      <% end %>
     </div>
   <% end %>
 </div>
