@@ -1,4 +1,15 @@
 <script>
+  function refresh_graphs(from) {
+    $.each($('#graphs').find('img'), function() {
+      if (from) {
+        src = $(this).attr('src').replace(/&from=([\d-\w]+)/)+'&from='+from+'&'+new Date().getTime();
+        $(this).attr('src', src);
+      } else {
+        $(this).attr('src', $(this).attr('src')+'&'+new Date().getTime());
+      }
+    });
+  }
+
   $('#graph-tabs a').click(function(e) {
     e.preventDefault();
     $(this).tab('show')
@@ -6,9 +17,19 @@
 
   setTimeout(function() { $('#graph-tabs a').first().tab('show') }, 1);
 </script>
+
 <div class="page-header">
   <h3>Graphs</h3>
-  <small>Graphs pulled from graphite</small>
+  <small>Graphs pulled from graphite. Use the below controls to manipulate graph data.</small>
+  <div style="margin-top: 10px" id="graph-controls">
+    <button onclick="refresh_graphs()" type="button" style="margin-left: 10px" class="btn"><i class="icon-refresh"></i> Refresh</button>
+    <div class="btn-group pull-left" data-toggle="buttons-radio">
+      <button onclick="refresh_graphs('-1hour')" type="button" class="active btn btn-primary">Last hour</button>
+      <button onclick="refresh_graphs('-24hours')" type="button" class="btn btn-primary">Last day</button>
+      <button onclick="refresh_graphs('-1week')" type="button" class="btn btn-primary">Last week</button>
+      <button onclick="refresh_graphs('-1month')" type="button" class="btn btn-primary">Last month</button>
+    </div>
+  </div>
 </div>
 
 <ul id="graph-tabs" class="nav nav-tabs">
@@ -17,7 +38,7 @@
   <% end %>
 </ul>
 
-<div class="tab-content">
+<div id="graphs" class="tab-content">
   <% graphite_graphs.each do |type, graphs| %>
     <div class="tab-pane" id="<%= html_id("graphs-#{type}") %>">
       <ul class="unstyled">
