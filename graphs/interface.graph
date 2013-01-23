@@ -1,7 +1,7 @@
 title "#{info[:interface]} bandwidth (bits per second)"
 
-field :network_bps_rx, :data => "scale(systems.#{info[:hostname]}.interface.if_octets.#{info[:interface]}.rx, 8)",
+field :network_bps_rx, :data => "scale(sum(systems.#{info[:hostname]}.interface.if_octets.#{info[:interface]}.rx,systems.#{info[:hostname]}.interface.#{info[:interface]}.if_octets.rx), 8)",
                        :alias => 'RX'
 
-field :network_bps_tx, :data => "scale(systems.#{info[:hostname]}.interface.if_octets.#{info[:interface]}.tx, 8)",
+field :network_bps_tx, :data => "scale(sum(systems.#{info[:hostname]}.interface.if_octets.#{info[:interface]}.tx,systems.#{info[:hostname]}.interface.#{info[:interface]}.if_octets.tx), 8)",
                        :alias => 'TX'

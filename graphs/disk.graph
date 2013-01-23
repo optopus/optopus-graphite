@@ -1,7 +1,7 @@
 title "Disk Usage (#{info[:mount]})"
 
-field :disk_used, :data => "systems.#{info[:hostname]}.df.df.#{info[:mount]}.used",
+field :disk_used, :data => "sum(systems.#{info[:hostname]}.df.df.#{info[:mount]}.used,systems.#{info[:hostname]}.df.#{info[:mount]}.df_complex.used.value)",
                    :alias => 'Used'
 
-field :disk_free, :data => "systems.#{info[:hostname]}.df.df.#{info[:mount]}.free",
+field :disk_free, :data => "sum(systems.#{info[:hostname]}.df.df.#{info[:mount]}.free,systems.#{info[:hostname]}.df.#{info[:mount]}.df_complex.free.value)",
                    :alias => 'Free'
