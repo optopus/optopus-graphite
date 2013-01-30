@@ -1,3 +1,1 @@
-git 'git://github.com/ripienaar/graphite-graph-dsl.git' do
-  gem 'graphite_graph'
-end
+gem 'graphite_graph', '0.0.8'
