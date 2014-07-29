@@ -1,1 +1,1 @@
-gem 'graphite_graph', '0.0.8'
+gem 'graphite_graph'
